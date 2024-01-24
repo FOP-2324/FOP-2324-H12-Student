@@ -25,7 +25,7 @@ public class FsmBuilderImpl implements FsmBuilder{
     @Override
     public void setInputSize(int inputSize) throws KissParserException {
         if(this.headerInputSize != -1){
-            throw new ParameterAlreadySpecifiedException("InputSize");
+            throw new ParameterAlreadySpecifiedException(HeaderParameter.INPUT_SIZE);
         }
 
         this.headerInputSize = inputSize;
@@ -54,7 +54,7 @@ public class FsmBuilderImpl implements FsmBuilder{
     @Override
     public void finishHeader() throws KissParserException { // TODO: in bestehende exceptions auslagern, auch oben bei set MEthoden
         if(headerInputSize == -1){
-            throw new ParameterNotSpecifiedException("Input Size");
+            throw new ParameterNotSpecifiedException(HeaderParameter.INPUT_SIZE);
         }
 
         // TODO
