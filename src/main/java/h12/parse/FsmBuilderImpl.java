@@ -9,7 +9,7 @@ import h12.template.fsm.*;
 /**
  * Implementation of {@link FsmBuilder}
  */
-public class FsmBuilderImpl implements FsmBuilder{
+public class FsmBuilderImpl implements FsmBuilder {
 
     private int headerInputSize = -1;
     private int headerOutputSize = -1;
@@ -24,7 +24,7 @@ public class FsmBuilderImpl implements FsmBuilder{
 
     @Override
     public void setInputSize(int inputSize) throws KissParserException {
-        if(this.headerInputSize != -1){
+        if (this.headerInputSize != -1) {
             throw new ParameterAlreadySpecifiedException(HeaderParameter.INPUT_SIZE);
         }
 
@@ -33,7 +33,7 @@ public class FsmBuilderImpl implements FsmBuilder{
 
     @Override
     public void setOutputSize(int outputSize) throws KissParserException {
-       // TODO
+        // TODO
     }
 
     @Override
@@ -53,7 +53,7 @@ public class FsmBuilderImpl implements FsmBuilder{
 
     @Override
     public void finishHeader() throws KissParserException { // TODO: in bestehende exceptions auslagern, auch oben bei set MEthoden
-        if(headerInputSize == -1){
+        if (headerInputSize == -1) {
             throw new ParameterNotSpecifiedException(HeaderParameter.INPUT_SIZE);
         }
 
@@ -71,9 +71,10 @@ public class FsmBuilderImpl implements FsmBuilder{
     }
 
     /**
+     * Returns the parsed FSM
      *
      * @return the created {@link Fsm}
-     * @throws KissParserException
+     * @throws KissParserException if the fsm could not be parsed
      */
     public Fsm getFsm() throws KissParserException {
         // TODO

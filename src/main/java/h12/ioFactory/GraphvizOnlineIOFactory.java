@@ -9,16 +9,17 @@ import java.nio.charset.StandardCharsets;
 /**
  * An Implementation of {@link IOFactory} for the Graphviz Online URL
  */
-public class GraphvizOnlineIOFactory implements IOFactory{
+public class GraphvizOnlineIOFactory implements IOFactory {
 
     /**
      * Subtype of Buffered Reader used to capture content of File
      */
 
-    public static class GraphvizOnlineURLWriter extends BufferedWriter{
+    public static class GraphvizOnlineURLWriter extends BufferedWriter {
         private static final String BASE_URL = "https://dreampuf.github.io/GraphvizOnline/#";
 
         private final StringWriter stringWriter;
+
         private GraphvizOnlineURLWriter(StringWriter stringWriter) {
             super(stringWriter);
             this.stringWriter = stringWriter;
@@ -26,14 +27,14 @@ public class GraphvizOnlineIOFactory implements IOFactory{
 
         /**
          * Create a new empty {@link GraphvizOnlineURLWriter}
-         * @return
+         *
+         * @return the created {@link GraphvizOnlineURLWriter}
          */
-        public static GraphvizOnlineURLWriter create(){
+        public static GraphvizOnlineURLWriter create() {
             return new GraphvizOnlineURLWriter(new StringWriter());
         }
 
         /**
-         *
          * @return corresponding URL
          * @throws IOException /
          */
