@@ -20,7 +20,7 @@ public class GraphvizOnlineIOFactory implements IOFactory {
 
         private final StringWriter stringWriter;
 
-        private GraphvizOnlineURLWriter(StringWriter stringWriter) {
+        private GraphvizOnlineURLWriter(final StringWriter stringWriter) {
             super(stringWriter);
             this.stringWriter = stringWriter;
         }
@@ -51,7 +51,7 @@ public class GraphvizOnlineIOFactory implements IOFactory {
     }
 
     @Override
-    public BufferedReader createReader(String ioName) throws IOException {
+    public BufferedReader createReader(final String ioName) throws IOException {
         throw new UnsupportedOperationException("GraphvizOnlineIOFactory does not support writing!");
     }
 
@@ -61,7 +61,7 @@ public class GraphvizOnlineIOFactory implements IOFactory {
     }
 
     @Override
-    public GraphvizOnlineURLWriter createWriter(String ioName) throws IOException {
+    public GraphvizOnlineURLWriter createWriter(final String ioName) throws IOException {
         return GraphvizOnlineURLWriter.create();
     }
 }

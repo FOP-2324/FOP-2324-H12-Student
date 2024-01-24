@@ -24,7 +24,7 @@ public class FsmParser {
      * @param builder The {@link FsmBuilder} used to build the {@link h12.template.fsm.Fsm}
      * @throws IOException Can be thrown in case of File Problem
      */
-    public FsmParser(Scanner scanner, FsmBuilder builder) throws IOException {
+    public FsmParser(final Scanner scanner, final FsmBuilder builder) throws IOException {
         this.scanner = scanner;
         this.builder = builder;
 
@@ -37,7 +37,7 @@ public class FsmParser {
      * @throws IOException Can be thrown in case of File Problem
      */
     private Token consumeToken() throws IOException {
-        Token oldToken = currentToken;
+        final Token oldToken = currentToken;
         currentToken = scanner.scan();
         return oldToken;
     }
@@ -49,12 +49,12 @@ public class FsmParser {
      * @throws IOException Can be thrown in case of File Problem
      * @throws KissParserException If there is a Token missmatch
      */
-    private Token consumeAndCheckToken(Token.Type type) throws IOException, KissParserException {
+    private Token consumeAndCheckToken(final Token.Type type) throws IOException, KissParserException {
         if(!currentToken.is(type)){
             throw new BadTokenException(currentToken, type);
         }
 
-        Token oldToken = currentToken;
+        final Token oldToken = currentToken;
         currentToken = scanner.scan();
         return oldToken;
     }

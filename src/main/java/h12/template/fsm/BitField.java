@@ -20,7 +20,7 @@ public class BitField {
 
         private final char symbol;
 
-        BitValue(char symbol) {
+        BitValue(final char symbol) {
             this.symbol = symbol;
         }
 
@@ -43,7 +43,7 @@ public class BitField {
      * @param width the target length
      * @param value {@link BitValue} which gets replicated width times
      */
-    public BitField(int width, BitValue value) {
+    public BitField(final int width, final BitValue value) {
         field = new BitValue[width];
         for (int i = 0; i < width; i++) {
             field[i] = value;
@@ -56,7 +56,7 @@ public class BitField {
      * @param string the input
      * @throws BadBitfieldException Thrown if it can not be parsed
      */
-    public BitField(String string) throws BadBitfieldException {
+    public BitField(final String string) throws BadBitfieldException {
 
         this.field = new BitValue[string.length()];
         for (int i = 0; i < string.length(); i++) {
@@ -85,7 +85,7 @@ public class BitField {
      * @param input The event
      * @return true, iff event is captured by this field
      */
-    public boolean isActive(BitField input) {
+    public boolean isActive(final BitField input) {
         if (input.field.length != field.length) {
             throw new RuntimeException("Bad size of bitfield");
         }
@@ -108,7 +108,7 @@ public class BitField {
      * @param index The index
      * @param value The value
      */
-    public void setIndex(int index, BitValue value) {
+    public void setIndex(final int index, final BitValue value) {
         field[index] = value;
     }
 
@@ -118,12 +118,12 @@ public class BitField {
      * @param other Other {@link BitField}
      * @return Or Combination
      */
-    public BitField or(BitField other) {
+    public BitField or(final BitField other) {
         if (field.length != other.field.length) {
             throw new RuntimeException("Bad size of bitfield");
         }
 
-        BitField output = new BitField(field.length, BitValue.DC);
+        final BitField output = new BitField(field.length, BitValue.DC);
 
         for (int i = 0; i < output.field.length; i++) {
             if (field[i] == BitValue.DIRECT || other.field[i] == BitValue.DIRECT) {
@@ -143,7 +143,7 @@ public class BitField {
      * @param other other {@link BitField}
      * @return the Intersection
      */
-    public boolean intersect(BitField other) {
+    public boolean intersect(final BitField other) {
         if (field.length != other.field.length) {
             throw new RuntimeException("size missmatch");
         }
@@ -170,10 +170,10 @@ public class BitField {
      * @param dcSymbol Char which is used for "Don't Care"
      * @return the generated {@link String}
      */
-    public String toString(char dcSymbol) {
-        StringBuilder stringBuilder = new StringBuilder();
+    public String toString(final char dcSymbol) {
+        final StringBuilder stringBuilder = new StringBuilder();
 
-        for (BitValue value : field) {
+        for (final BitValue value : field) {
             stringBuilder.append(value == BitValue.DC ? dcSymbol : value.getSymbol());
         }
 
@@ -181,10 +181,10 @@ public class BitField {
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        BitField bitField = (BitField) o;
+        final BitField bitField = (BitField) o;
         return Arrays.equals(field, bitField.field);
     }
 

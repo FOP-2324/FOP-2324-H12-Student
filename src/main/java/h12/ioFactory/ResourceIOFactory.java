@@ -13,8 +13,8 @@ public class ResourceIOFactory implements IOFactory{
     }
 
     @Override
-    public BufferedReader createReader(String ioName) throws FileNotFoundException {
-        InputStream resourceStream = getClass().getClassLoader().getResourceAsStream(ioName);
+    public BufferedReader createReader(final String ioName) throws FileNotFoundException {
+        final InputStream resourceStream = getClass().getClassLoader().getResourceAsStream(ioName);
         if (resourceStream == null) {
             throw new FileNotFoundException("Ressource does not exist: %s".formatted(ioName));
         }
@@ -27,7 +27,7 @@ public class ResourceIOFactory implements IOFactory{
     }
 
     @Override
-    public BufferedWriter createWriter(String ioName) throws IOException {
+    public BufferedWriter createWriter(final String ioName) throws IOException {
         throw new UnsupportedOperationException("RessourceIOFactory does not support writing!");
     }
 }

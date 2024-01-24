@@ -12,7 +12,7 @@ public class BadTokenException extends KissParserException{
      * @param token The bad Token
      * @param expectedType The originally expected Type
      */
-    public BadTokenException(Token token, Token.Type expectedType) {
+    public BadTokenException(final Token token, final Token.Type expectedType) {
         super("Bad token parsed: Token %s is not of type %s".formatted(token, expectedType));
     }
 }

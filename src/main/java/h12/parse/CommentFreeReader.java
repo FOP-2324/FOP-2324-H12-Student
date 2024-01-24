@@ -11,7 +11,7 @@ public class CommentFreeReader {
     final static char NEWLINE = '\n';
     private final BufferedReader reader;
 
-    private String lookAheadString = "";
+    private final String lookAheadString = "";
 
 
     /**
@@ -19,7 +19,7 @@ public class CommentFreeReader {
      * @param reader the Reader for the file
      * @throws IOException Can be thrown in case of File Problem
      */
-    public CommentFreeReader(BufferedReader reader) throws IOException {
+    public CommentFreeReader(final BufferedReader reader) throws IOException {
         this.reader = reader;
         lookAhead();
     }

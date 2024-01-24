@@ -11,7 +11,7 @@ public class SizeMismatchException extends KissParserException{
      * Constructs a new {@link ParameterNotSpecifiedException}
      * @param parameter The Parameter which has a size missmatch
      */
-    public SizeMismatchException(HeaderParameter parameter) {
+    public SizeMismatchException(final HeaderParameter parameter) {
         super("Size mismatch for %s!".formatted(parameter));
     }
 }

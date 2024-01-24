@@ -18,12 +18,12 @@ public class KissExporter implements FsmExporter {
      * Creates a new instance of q {@link KissExporter}
      * @param writer Writer which is used as output
      */
-    public KissExporter(BufferedWriter writer){
+    public KissExporter(final BufferedWriter writer){
         this.writer = writer;
     }
 
     @Override
-    public void export(Fsm fsm) throws IOException {
+    public void export(final Fsm fsm) throws IOException {
        // TODO
     }
 }

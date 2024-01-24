@@ -15,7 +15,7 @@ public class Transition {
      * @param nextState next {@link State}
      * @param output appropriate Output Symbol
      */
-    public Transition(BitField event, State nextState, BitField output){
+    public Transition(final BitField event, final State nextState, final BitField output){
         this.event = event;
         this.nextState = nextState;
         this.output = output;

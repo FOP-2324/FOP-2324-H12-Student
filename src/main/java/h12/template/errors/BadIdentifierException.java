@@ -11,7 +11,7 @@ public class BadIdentifierException extends BadTokenException{
      * Construct new {@link BadIdentifierException}
      * @param token The {@link Token}, which is bad
      */
-    public BadIdentifierException(Token token) {
+    public BadIdentifierException(final Token token) {
         super(token, Token.Type.IDENTIFIER_STATE);
     }
 }

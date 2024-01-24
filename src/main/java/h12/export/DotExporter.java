@@ -27,7 +27,7 @@ public class DotExporter implements FsmExporter{
          * @param first Start State
          * @param second End State
          */
-        public StatePair(State first, State second){
+        public StatePair(final State first, final State second){
             this.first = first;
             this.second = second;
         }
@@ -49,10 +49,10 @@ public class DotExporter implements FsmExporter{
         }
 
         @Override
-        public boolean equals(Object o) {
+        public boolean equals(final Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            StatePair statePair = (StatePair) o;
+            final StatePair statePair = (StatePair) o;
             return Objects.equals(first, statePair.first) && Objects.equals(second, statePair.second);
         }
 
@@ -69,7 +69,7 @@ public class DotExporter implements FsmExporter{
      * Creates a new instance of q {@link DotExporter}
      * @param writer Writer which is used as output
      */
-    public DotExporter(BufferedWriter writer){
+    public DotExporter(final BufferedWriter writer){
         this.writer = writer;
     }
 
@@ -96,7 +96,7 @@ public class DotExporter implements FsmExporter{
      * @param output The corresponding verbose output of state
      * @throws IOException Can be thrown in case of File Problem
      */
-    private void writeState(State state, BitField output) throws IOException {
+    private void writeState(final State state, final BitField output) throws IOException {
         writer.write("\t");
         writer.write(state.getName());
         writer.write("[label=<");
@@ -112,7 +112,7 @@ public class DotExporter implements FsmExporter{
      * @param state Initial State of the Automata
      * @throws IOException Can be thrown in case of File Problem
      */
-    private void writeInitial(State state) throws IOException {
+    private void writeInitial(final State state) throws IOException {
         writer.write("\t__initial [margin=0 fontcolor=black fillcolor=black fontsize=0 width=0.5 shape=circle style=filled];\n");
         writer.write("\t__initial -> ");
         writer.write(state.getName());
@@ -126,7 +126,7 @@ public class DotExporter implements FsmExporter{
      * @param events All Events firing this transition
      * @throws IOException Can be thrown in case of File Problem
      */
-    private void writeTransition(State from, State to, Set<BitField> events) throws IOException {
+    private void writeTransition(final State from, final State to, final Set<BitField> events) throws IOException {
         //a1 -> b3[label="abc"];
         writer.write("\t");
         writer.write(from.getName());
@@ -134,9 +134,9 @@ public class DotExporter implements FsmExporter{
         writer.write(to.getName());
         writer.write("[label=\"");
 
-        Iterator<BitField> iterator = events.iterator();
+        final Iterator<BitField> iterator = events.iterator();
         while (iterator.hasNext()){
-            BitField event = iterator.next();
+            final BitField event = iterator.next();
             writer.write(event.toString());
             if(iterator.hasNext()){
                 writer.write(", ");
@@ -153,10 +153,10 @@ public class DotExporter implements FsmExporter{
         }
 
         // Collect output of state
-        HashMap<State, BitField> outputOfState = new HashMap<>();
+        final HashMap<State, BitField> outputOfState = new HashMap<>();
 
         fsm.forEach(from -> from.forEach(transition -> outputOfState.put(transition.getNextState(), transition.getOutput())));
-        BitField unspecified = new BitField(outputOfState.values().iterator().next().width(), BitField.BitValue.DC);
+        final BitField unspecified = new BitField(outputOfState.values().iterator().next().width(), BitField.BitValue.DC);
         fsm.forEach(state -> outputOfState.computeIfAbsent(state, state1 -> unspecified));
 
 
@@ -165,7 +165,7 @@ public class DotExporter implements FsmExporter{
         fsm.forEach(state -> {
             try {
                 writeState(state, outputOfState.get(state));
-            } catch (IOException e) {
+            } catch (final IOException e) {
                 throw new RuntimeException(e);
             }
         });
@@ -177,14 +177,14 @@ public class DotExporter implements FsmExporter{
         }
 
 
-        HashMap<StatePair, Set<BitField>> transitions = new HashMap<>();
+        final HashMap<StatePair, Set<BitField>> transitions = new HashMap<>();
 
         fsm.forEach(from -> from.forEach(transition -> {
-            var eventSet = transitions.computeIfAbsent(new StatePair(from, transition.getNextState()), statePair -> new HashSet<>());
+            final var eventSet = transitions.computeIfAbsent(new StatePair(from, transition.getNextState()), statePair -> new HashSet<>());
             eventSet.add(transition.getEvent());
         }));
 
-        for (var transition : transitions.entrySet()){
+        for (final var transition : transitions.entrySet()){
             writeTransition(transition.getKey().getFirst(), transition.getKey().getSecond(), transition.getValue());
         }
 

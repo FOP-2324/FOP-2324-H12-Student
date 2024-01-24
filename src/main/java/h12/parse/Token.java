@@ -11,7 +11,7 @@ public class Token {
      * Create a new Token
      * @param value The {@link String} Representation of the Token
      */
-    public Token(String value){
+    public Token(final String value){
         this.value = value;
     }
 
@@ -20,7 +20,7 @@ public class Token {
      * @param type expected type
      * @return true, iff the type matches with the expected
      */
-    public boolean is(Type type){
+    public boolean is(final Type type){
         return value.matches(type.pattern);
     }
 
@@ -53,7 +53,7 @@ public class Token {
          * Create a new {@link Type}
          * @param pattern The regex pattern of the {@link Type}
          */
-        Type(String pattern){
+        Type(final String pattern){
             this.pattern = pattern;
         }
     }

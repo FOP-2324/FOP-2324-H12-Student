@@ -13,7 +13,7 @@ public class FsmInstance {
      * @param fsm The target Automata
      * @param initialState The initial State
      */
-    public FsmInstance(Fsm fsm, State initialState){
+    public FsmInstance(final Fsm fsm, final State initialState){
         this.fsm = fsm;
         this.currentState = initialState;
     }
@@ -22,8 +22,8 @@ public class FsmInstance {
      * Make a step of Automata
      * @param event input symbol
      */
-    public void step(BitField event){
-        State nextState = currentState.getNextState(event);
+    public void step(final BitField event){
+        final State nextState = currentState.getNextState(event);
         currentState = nextState;
     }
 

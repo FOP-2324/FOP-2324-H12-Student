@@ -22,7 +22,7 @@ public class State implements Iterable<Transition>{
      * Create a new State
      * @param name desired unique identifier
      */
-    public State(String name){
+    public State(final String name){
         this.name = name;
     }
 
@@ -30,9 +30,9 @@ public class State implements Iterable<Transition>{
      * Add a transition to state
      * @param transition target transition
      */
-    public void setTransition(Transition transition) {
+    public void setTransition(final Transition transition) {
         // check for each existing transition, that multiple event have same nextState
-        for(Transition existingTransition : transitions){
+        for(final Transition existingTransition : transitions){
             if(existingTransition.getEvent().intersect(transition.getEvent())){
                 if(existingTransition.getNextState() != transition.getNextState()){
                     throw new RuntimeException("Next state not equal");
@@ -48,12 +48,12 @@ public class State implements Iterable<Transition>{
      * @param event specific input symbol
      * @return the next state
      */
-    public State getNextState(BitField event) {
+    public State getNextState(final BitField event) {
         // first matching determines state -> because overlap is checked at setTransition
 
-        State nextState = this;
+        final State nextState = this;
 
-        for(Transition transition : transitions){
+        for(final Transition transition : transitions){
             if(transition.getEvent().isActive(event)){
                 return transition.getNextState();
             }
@@ -82,10 +82,10 @@ public class State implements Iterable<Transition>{
     }
 
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(final Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        State that = (State) o;
+        final State that = (State) o;
         return Objects.equals(name, that.name);
     }
 

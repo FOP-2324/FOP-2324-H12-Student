@@ -16,7 +16,7 @@ public class Fsm implements Iterable<State>{
      * Adds a state to Automata
      * @param state State which get added
      */
-    public void addState(State state){
+    public void addState(final State state){
         states.add(state);
     }
 
@@ -24,7 +24,7 @@ public class Fsm implements Iterable<State>{
      * Set Initial State of Automata
      * @param state The initial State of Automata
      */
-    public void setInitialState(State state){
+    public void setInitialState(final State state){
         initialState = state;
     }
 
@@ -63,12 +63,12 @@ public class Fsm implements Iterable<State>{
      * @return true, iff it is verbose
      */
     public boolean isVerbose(){
-        HashMap<State, Set<BitField>> outputOfState = new HashMap<>();
+        final HashMap<State, Set<BitField>> outputOfState = new HashMap<>();
         forEach(state -> outputOfState.put(state, new HashSet<>()));
 
         forEach(from -> from.forEach(transition -> outputOfState.get(transition.getNextState()).add(transition.getOutput())));
 
-        for(var outputs : outputOfState.values()){
+        for(final var outputs : outputOfState.values()){
             if(outputs.size() > 1){ // if there is more than one output combination, this breaks verbosity
                 return false;
             }
@@ -89,16 +89,16 @@ public class Fsm implements Iterable<State>{
          * @param state The state
          * @param output The output of state
          */
-        public StateAndOutput(State state, BitField output){
+        public StateAndOutput(final State state, final BitField output){
             originalState = state;
             this.output = output;
         }
 
         @Override
-        public boolean equals(Object o) {
+        public boolean equals(final Object o) {
             if (this == o) return true;
             if (o == null || getClass() != o.getClass()) return false;
-            StateAndOutput that = (StateAndOutput) o;
+            final StateAndOutput that = (StateAndOutput) o;
             return Objects.equals(originalState, that.originalState) && Objects.equals(output, that.output);
         }
 
@@ -115,28 +115,28 @@ public class Fsm implements Iterable<State>{
      */
     public Fsm toVerboseFsm(){
         // Collect output of state
-        HashMap<State, Set<BitField>> outputOfState = new HashMap<>();
+        final HashMap<State, Set<BitField>> outputOfState = new HashMap<>();
         forEach(state -> outputOfState.put(state, new HashSet<>()));
         forEach(from -> from.forEach(transition -> outputOfState.get(transition.getNextState()).add(transition.getOutput())));
 
-        Fsm newFsm = new Fsm();
+        final Fsm newFsm = new Fsm();
 
 
         // Make new states
-        HashMap<StateAndOutput, State> newChangedStateMap = new HashMap<>();
-        HashMap<State, State> newNormalStateMap = new HashMap<>();
+        final HashMap<StateAndOutput, State> newChangedStateMap = new HashMap<>();
+        final HashMap<State, State> newNormalStateMap = new HashMap<>();
 
-        for(var entry : outputOfState.entrySet()){
-            State originalState = entry.getKey();
+        for(final var entry : outputOfState.entrySet()){
+            final State originalState = entry.getKey();
             if(entry.getValue().size() > 1){
                 // needs to be changed
-                for(var output : entry.getValue()){
-                    State newState = new State(originalState.getName() + "__" + output.toString('X'));
+                for(final var output : entry.getValue()){
+                    final State newState = new State(originalState.getName() + "__" + output.toString('X'));
                     newChangedStateMap.put(new StateAndOutput(originalState, output), newState);
                     newFsm.addState(newState);
                 }
             }else{
-                State newState = new State(originalState.getName());
+                final State newState = new State(originalState.getName());
                 newNormalStateMap.put(originalState, newState);
                 newFsm.addState(newState);
             }
@@ -145,19 +145,19 @@ public class Fsm implements Iterable<State>{
         // add each transition to fsm
 
         forEach(from -> {
-            Set<State> newFroms = new HashSet<>();
+            final Set<State> newFroms = new HashSet<>();
             if(newNormalStateMap.containsKey(from)){ // from is normal state
                 newFroms.add(newNormalStateMap.get(from));
             }else{ // from is split node
-                for(BitField field : outputOfState.get(from)){
+                for(final BitField field : outputOfState.get(from)){
                     newFroms.add(newChangedStateMap.get(new StateAndOutput(from, field)));
                 }
             }
 
             from.forEach(transition -> {
                 // select goal state
-                State newNextState;
-                var stateAndOutput = new StateAndOutput(transition.getNextState(), transition.getOutput());
+                final State newNextState;
+                final var stateAndOutput = new StateAndOutput(transition.getNextState(), transition.getOutput());
                 if(newChangedStateMap.containsKey(stateAndOutput)){
                     newNextState = newChangedStateMap.get(stateAndOutput);
                 }else {
@@ -165,7 +165,7 @@ public class Fsm implements Iterable<State>{
                 }
 
                 // add for each from
-                for(State newFrom : newFroms){
+                for(final State newFrom : newFroms){
                     newFrom.setTransition(new Transition(transition.getEvent(), newNextState, transition.getOutput()));
                 }
             });
@@ -178,12 +178,12 @@ public class Fsm implements Iterable<State>{
                 newFsm.initialState = newNormalStateMap.get(initialState);
             } else {
                 // there are multiple possible initial states, so introduce new one
-                State newInitialState = new State(initialState.getName() + "__INITIAL");
+                final State newInitialState = new State(initialState.getName() + "__INITIAL");
 
                 // connect to all successors of original initial state
                 initialState.forEach(transition -> {
-                    State newNextState;
-                    var stateAndOutput = new StateAndOutput(transition.getNextState(), transition.getOutput());
+                    final State newNextState;
+                    final var stateAndOutput = new StateAndOutput(transition.getNextState(), transition.getOutput());
                     if (newChangedStateMap.containsKey(stateAndOutput)) {
                         newNextState = newChangedStateMap.get(stateAndOutput);
                     } else {

@@ -11,7 +11,7 @@ public class BadNumberException extends BadTokenException{
      * Construct a new {@link BadNumberException}
      * @param token The {@link Token}, which is the bad number
      */
-    public BadNumberException(Token token) {
+    public BadNumberException(final Token token) {
         super(token, Token.Type.NUMBER);
     }
 }

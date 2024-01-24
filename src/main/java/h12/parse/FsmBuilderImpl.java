@@ -12,18 +12,18 @@ import h12.template.fsm.*;
 public class FsmBuilderImpl implements FsmBuilder {
 
     private int headerInputSize = -1;
-    private int headerOutputSize = -1;
-    private int headerNumberOfTerms = -1;
-    private int headerNumberOfStates = -1;
-    private int numberOfTermsCounter = 0;
+    private final int headerOutputSize = -1;
+    private final int headerNumberOfTerms = -1;
+    private final int headerNumberOfStates = -1;
+    private final int numberOfTermsCounter = 0;
 
     private final StateFactory stateFactory = new StateFactory();
     private final Fsm fsm = new Fsm();
 
-    private boolean buildFinished = false;
+    private final boolean buildFinished = false;
 
     @Override
-    public void setInputSize(int inputSize) throws KissParserException {
+    public void setInputSize(final int inputSize) throws KissParserException {
         if (this.headerInputSize != -1) {
             throw new ParameterAlreadySpecifiedException(HeaderParameter.INPUT_SIZE);
         }
@@ -32,22 +32,22 @@ public class FsmBuilderImpl implements FsmBuilder {
     }
 
     @Override
-    public void setOutputSize(int outputSize) throws KissParserException {
+    public void setOutputSize(final int outputSize) throws KissParserException {
         // TODO
     }
 
     @Override
-    public void setNumberOfTerms(int numberOfTerms) throws KissParserException {
+    public void setNumberOfTerms(final int numberOfTerms) throws KissParserException {
         // TODO
     }
 
     @Override
-    public void setNumberOfStates(int numberOfStates) throws KissParserException {
+    public void setNumberOfStates(final int numberOfStates) throws KissParserException {
         // TODO
     }
 
     @Override
-    public void setInitialState(String initialStateIdentifier) throws KissParserException {
+    public void setInitialState(final String initialStateIdentifier) throws KissParserException {
         // TODO
     }
 
@@ -61,7 +61,7 @@ public class FsmBuilderImpl implements FsmBuilder {
     }
 
     @Override
-    public void addTerm(BitField inputField, String inputStateIdentifier, String nextStateIdentifier, BitField outputField) throws KissParserException { // TODO: keine Parser Exception, sondern Builder
+    public void addTerm(final BitField inputField, final String inputStateIdentifier, final String nextStateIdentifier, final BitField outputField) throws KissParserException { // TODO: keine Parser Exception, sondern Builder
         // TODO
     }
 

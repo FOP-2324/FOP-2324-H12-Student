@@ -15,7 +15,7 @@ public class OneHotEncoding implements StateEncoding {
     private final Map<State, BitField> encoding = new HashMap<>();
 
     @Override
-    public void init(int numberOfStates) {
+    public void init(final int numberOfStates) {
         if(this.numberOfStates != -1){
             throw new RuntimeException("already inited!");
         }
@@ -24,19 +24,19 @@ public class OneHotEncoding implements StateEncoding {
     }
 
     @Override
-    public BitField encode(State state) {
+    public BitField encode(final State state) {
         if(numberOfStates == -1){
             throw new RuntimeException("not inited");
         }
 
         return encoding.computeIfAbsent(state, new Function<State, BitField>() {
             @Override
-            public BitField apply(State state) {
+            public BitField apply(final State state) {
                 if(stateCounter >= numberOfStates){
                     throw new RuntimeException("To much States to encode!");
                 }
 
-                BitField field = new BitField(numberOfStates, BitField.BitValue.INDIRECT);
+                final BitField field = new BitField(numberOfStates, BitField.BitValue.INDIRECT);
                 field.setIndex(numberOfStates - 1 - stateCounter, BitField.BitValue.DIRECT);
                 stateCounter++;
                 return field;

@@ -24,22 +24,22 @@ public class Main {
      *
      * @param args program arguments, currently ignored
      */
-    public static void main(String[] args) throws IOException, KissParserException {
+    public static void main(final String[] args) throws IOException, KissParserException {
 
-        IOFactory ioFactory = new ResourceIOFactory();
-        BufferedReader reader = ioFactory.createReader("h12/rs_latch.kiss2");
-        CommentFreeReader commentFreeReader = new CommentFreeReader(reader);
-        Scanner scanner = new Scanner(commentFreeReader);
+        final IOFactory ioFactory = new ResourceIOFactory();
+        final BufferedReader reader = ioFactory.createReader("h12/rs_latch.kiss2");
+        final CommentFreeReader commentFreeReader = new CommentFreeReader(reader);
+        final Scanner scanner = new Scanner(commentFreeReader);
 
-        FsmBuilderImpl fsmBuilder = new FsmBuilderImpl();
-        FsmParser fsmParser = new FsmParser(scanner, fsmBuilder);
+        final FsmBuilderImpl fsmBuilder = new FsmBuilderImpl();
+        final FsmParser fsmParser = new FsmParser(scanner, fsmBuilder);
 
         fsmParser.parse();
 
-        Fsm fsm = fsmBuilder.getFsm();
+        final Fsm fsm = fsmBuilder.getFsm();
 
-        GraphvizOnlineIOFactory.GraphvizOnlineURLWriter graphvizOnlineURLWriter = (new GraphvizOnlineIOFactory()).createWriter(null);
-        DotExporter exporter = new DotExporter(graphvizOnlineURLWriter);
+        final GraphvizOnlineIOFactory.GraphvizOnlineURLWriter graphvizOnlineURLWriter = (new GraphvizOnlineIOFactory()).createWriter(null);
+        final DotExporter exporter = new DotExporter(graphvizOnlineURLWriter);
         exporter.export(fsm);
         System.out.println("URL:\t" + graphvizOnlineURLWriter.getURL());
     }

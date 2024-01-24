@@ -11,7 +11,7 @@ public class BadBitfieldException extends BadTokenException{
      * Construct a new {@link BadBitfieldException}
      * @param token The bad {@link Token}
      */
-    public BadBitfieldException(Token token) {
+    public BadBitfieldException(final Token token) {
         super(token, Token.Type.BITFIELD);
     }
 }

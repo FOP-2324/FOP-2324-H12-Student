@@ -8,14 +8,14 @@ import java.io.IOException;
 public class Scanner {
 
     private final CommentFreeReader reader;
-    private Token prereadToken = null;
+    private final Token prereadToken = null;
 
     /**
      * Create a new {@link Scanner}
      * @param reader The {@link CommentFreeReader} which has to be used
      * @throws IOException Can be thrown in case of File Problem
      */
-    public Scanner(CommentFreeReader reader) throws IOException {
+    public Scanner(final CommentFreeReader reader) throws IOException {
         this.reader = reader;
         // TODO
     }
@@ -25,7 +25,7 @@ public class Scanner {
      * @param c Input Char
      * @return true, iff there if the input char is a whitespace
      */
-    private static boolean isWhitespace(char c){
+    private static boolean isWhitespace(final char c){
         return  c == '\r' || c == ' ' || c == '\t' || c == '\n';
     }
 

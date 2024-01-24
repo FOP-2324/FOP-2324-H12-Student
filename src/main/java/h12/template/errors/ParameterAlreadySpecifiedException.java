@@ -11,7 +11,7 @@ public class ParameterAlreadySpecifiedException extends KissParserException{
      * Constructs a new {@link ParameterAlreadySpecifiedException}
      * @param parameter The Parameter which is already specified
      */
-    public ParameterAlreadySpecifiedException(HeaderParameter parameter) {
+    public ParameterAlreadySpecifiedException(final HeaderParameter parameter) {
         super("Header already specified: %s".formatted(parameter));
     }
 }

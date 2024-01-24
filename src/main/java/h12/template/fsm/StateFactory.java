@@ -14,7 +14,7 @@ public class StateFactory {
      * @param identifier a name of state
      * @return corresponding {@link State}
      */
-    public State get(String identifier) {
+    public State get(final String identifier) {
         return stateMap.computeIfAbsent(identifier, State::new);
     }
 
