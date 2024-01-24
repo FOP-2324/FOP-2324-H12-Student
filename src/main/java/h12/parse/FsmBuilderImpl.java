@@ -52,7 +52,7 @@ public class FsmBuilderImpl implements FsmBuilder {
     }
 
     @Override
-    public void finishHeader() throws KissParserException { // TODO: in bestehende exceptions auslagern, auch oben bei set MEthoden
+    public void finishHeader() throws KissParserException {
         if (headerInputSize == -1) {
             throw new ParameterNotSpecifiedException(HeaderParameter.INPUT_SIZE);
         }
@@ -61,7 +61,7 @@ public class FsmBuilderImpl implements FsmBuilder {
     }
 
     @Override
-    public void addTerm(final BitField inputField, final String inputStateIdentifier, final String nextStateIdentifier, final BitField outputField) throws KissParserException { // TODO: keine Parser Exception, sondern Builder
+    public void addTerm(final BitField inputField, final String inputStateIdentifier, final String nextStateIdentifier, final BitField outputField) throws KissParserException {
         // TODO
     }
 
