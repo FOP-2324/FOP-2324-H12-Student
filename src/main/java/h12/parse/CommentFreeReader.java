@@ -11,7 +11,7 @@ public class CommentFreeReader {
     final static char NEWLINE = '\n';
     private final BufferedReader reader;
 
-    private final String lookAheadString = "";
+    private String lookAheadString = "";
 
 
     /**
