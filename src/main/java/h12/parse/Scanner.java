@@ -8,7 +8,6 @@ import java.io.IOException;
 public class Scanner {
 
     private final CommentFreeReader reader;
-    private final Token prereadToken = null;
 
     /**
      * Create a new {@link Scanner}
