@@ -12,15 +12,15 @@ import h12.template.fsm.*;
 public class FsmBuilderImpl implements FsmBuilder {
 
     private int headerInputSize = -1;
-    private final int headerOutputSize = -1;
-    private final int headerNumberOfTerms = -1;
-    private final int headerNumberOfStates = -1;
-    private final int numberOfTermsCounter = 0;
+    private int headerOutputSize = -1;
+    private int headerNumberOfTerms = -1;
+    private int headerNumberOfStates = -1;
+    private int numberOfTermsCounter = 0;
 
     private final StateFactory stateFactory = new StateFactory();
     private final Fsm fsm = new Fsm();
 
-    private final boolean buildFinished = false;
+    private boolean buildFinished = false;
 
     @Override
     public void setInputSize(final int inputSize) throws KissParserException {
