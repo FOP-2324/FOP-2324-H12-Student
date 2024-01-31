@@ -80,7 +80,7 @@ public abstract class H7_Tests {
             result -> "Unexpected exception thrown"
         );
 
-        String actual = writer.toString().trim().replaceAll("\s+", " ");
+        String actual = writer.toString().trim().replaceAll("\s+", " ").replaceAll("\r\n", "\n");;
         assertion.accept(expected, actual, contextBuilder().add("Expected", expected).add("Actual", actual).build());
     }
 }
