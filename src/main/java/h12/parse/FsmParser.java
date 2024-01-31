@@ -8,6 +8,8 @@ import h12.template.fsm.BitField;
 
 import java.io.IOException;
 
+import static org.tudalgo.algoutils.student.Student.crash;
+
 /**
  * Class implementing a parser for the kiss2 file
  */
@@ -76,6 +78,7 @@ public class FsmParser {
 
     private void parseFSM() throws IOException, KissParserException {
         // TODO
+        crash();
     }
 
     /**
@@ -89,6 +92,7 @@ public class FsmParser {
                 parseInputWidth();
             }else{ // TODO
                 // TODO
+                crash();
                 return;
             }
         }
@@ -119,6 +123,7 @@ public class FsmParser {
      */
     private void parseOutputWidth() throws IOException, KissParserException {
         // TODO
+        crash();
     }
 
     /**
@@ -128,6 +133,7 @@ public class FsmParser {
      */
     private void parseNumberOfTerms() throws IOException, KissParserException {
         // TODO
+        crash();
     }
 
     /**
@@ -137,6 +143,7 @@ public class FsmParser {
      */
     private void parseNumberOfStates() throws IOException, KissParserException {
         // TODO
+        crash();
     }
 
     /**
@@ -146,6 +153,7 @@ public class FsmParser {
      */
     private void parseInitialState() throws IOException, KissParserException {
         // TODO
+        crash();
     }
 
     /**
@@ -155,6 +163,7 @@ public class FsmParser {
      */
     private void parseTerms() throws KissParserException, IOException {
         // TODO
+        crash();
     }
 
     /**
@@ -164,6 +173,7 @@ public class FsmParser {
      */
     private void parseTerm() throws KissParserException, IOException {
         // TODO
+        crash();
     }
 
 }

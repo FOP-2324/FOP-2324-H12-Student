@@ -2,6 +2,8 @@ package h12.parse;
 
 import java.io.IOException;
 
+import static org.tudalgo.algoutils.student.Student.crash;
+
 /**
  * Class used to read char-wise and provides a token-wise stream
  */
@@ -36,7 +38,7 @@ public class Scanner {
      */
     public Token scan() throws IOException {
         // TODO
-        throw new UnsupportedOperationException();
+        return crash();
     }
 
     /**
@@ -45,6 +47,6 @@ public class Scanner {
      */
     public boolean hasNext(){
         // TODO
-        throw new UnsupportedOperationException();
+        return crash();
     }
 }

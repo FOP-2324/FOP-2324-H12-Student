@@ -6,6 +6,8 @@ import h12.template.errors.ParameterNotSpecifiedException;
 import h12.template.errors.SizeMismatchException;
 import h12.template.fsm.*;
 
+import static org.tudalgo.algoutils.student.Student.crash;
+
 /**
  * Implementation of {@link FsmBuilder}
  */
@@ -34,21 +36,25 @@ public class FsmBuilderImpl implements FsmBuilder {
     @Override
     public void setOutputSize(final int outputSize) throws KissParserException {
         // TODO
+        crash();
     }
 
     @Override
     public void setNumberOfTerms(final int numberOfTerms) throws KissParserException {
-        // TODO
+        //
+        crash();
     }
 
     @Override
     public void setNumberOfStates(final int numberOfStates) throws KissParserException {
         // TODO
+        crash();
     }
 
     @Override
     public void setInitialState(final String initialStateIdentifier) throws KissParserException {
         // TODO
+        crash();
     }
 
     @Override
@@ -58,16 +64,19 @@ public class FsmBuilderImpl implements FsmBuilder {
         }
 
         // TODO
+        crash();
     }
 
     @Override
     public void addTerm(final BitField inputField, final String inputStateIdentifier, final String nextStateIdentifier, final BitField outputField) throws KissParserException {
         // TODO
+        crash();
     }
 
     @Override
     public void finishFSM() throws KissParserException {
         // TODO
+        crash();
     }
 
     /**
@@ -78,6 +87,6 @@ public class FsmBuilderImpl implements FsmBuilder {
      */
     public Fsm getFsm() throws KissParserException {
         // TODO
-        throw new UnsupportedOperationException();
+        return crash();
     }
 }

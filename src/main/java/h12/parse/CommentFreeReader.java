@@ -3,6 +3,8 @@ package h12.parse;
 import java.io.BufferedReader;
 import java.io.IOException;
 
+import static org.tudalgo.algoutils.student.Student.crash;
+
 /**
  * Class to read line-wise and  provide char-wise stream and removes comments
  */
@@ -30,7 +32,7 @@ public class CommentFreeReader {
      */
     public boolean hasNext(){
         // TODO
-        throw new UnsupportedOperationException();
+        return crash();
     }
 
     /**
@@ -40,7 +42,7 @@ public class CommentFreeReader {
      */
     public char read() throws IOException {
         // TODO
-        throw new UnsupportedOperationException();
+        return crash();
     }
 
     /**
@@ -49,7 +51,7 @@ public class CommentFreeReader {
      */
     public char peek(){
         // TODO
-        throw new UnsupportedOperationException();
+        return crash();
     }
 
     /**
@@ -58,7 +60,7 @@ public class CommentFreeReader {
      */
     private void lookAhead() throws IOException {
         // TODO
-        throw new UnsupportedOperationException();
+        crash();
     }
 
 }
