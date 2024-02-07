@@ -21,11 +21,14 @@ import org.tudalgo.algoutils.tutor.general.reflections.TypeLink;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.StringWriter;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.call;
-import static org.tudalgo.algoutils.tutor.general.assertions.Assertions2.emptyContext;
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public abstract class H7_Tests {
@@ -69,18 +72,18 @@ public abstract class H7_Tests {
         assertOperations(params, exporter, (expected, actual, context) -> Assertions2.assertEquals(expected, actual, context, result -> "Expected %s, but got %s".formatted(expected, actual)));
     }
 
-    protected void assertOperations(JsonParameterSet params, SystemVerilogExporter exporter, TriConsumer<String, String, Context> assertion) {
+    protected void assertOperations(JsonParameterSet params, SystemVerilogExporter exporter, TriConsumer<List<String>, List<String>, Context> assertion) {
         Fsm fsm = params.get("fsm");
         String expected = params.get("expected");
         call(() -> {
-                exporter.export(fsm);
-                bufferedWriter.flush();
-            },
-            emptyContext(),
-            result -> "Unexpected exception thrown"
-        );
+            exporter.export(fsm);
+            bufferedWriter.flush();
+        });
+        String actual = writer.toString();
+        assertion.accept(toList(expected), toList(actual), contextBuilder().add("Expected", expected).add("Actual", actual).build());
+    }
 
-        String actual = writer.toString().trim().replaceAll("\s+", " ").replaceAll("\r\n", "\n");;
-        assertion.accept(expected, actual, contextBuilder().add("Expected", expected).add("Actual", actual).build());
+    private List<String> toList(String s) {
+        return Arrays.stream(s.trim().split(";")).filter(Predicate.not(String::isBlank)).map(String::trim).map(s1 -> s1 + ";").collect(Collectors.toList());
     }
 }
